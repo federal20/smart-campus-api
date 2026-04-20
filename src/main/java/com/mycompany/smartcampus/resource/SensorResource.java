@@ -9,6 +9,7 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import java.net.URI;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Path("/sensors")
@@ -31,7 +32,11 @@ public class SensorResource {
     public Response createSensor(Sensor sensor) {
         if (sensor == null || sensor.getId() == null || sensor.getId().isBlank()) {
             return Response.status(Response.Status.BAD_REQUEST)
-                    .entity("Sensor ID is required")
+                    .entity(Map.of(
+                            "status", 400,
+                            "error", "Bad Request",
+                            "message", "Sensor ID is required"
+                    ))
                     .build();
         }
 
@@ -40,17 +45,50 @@ public class SensorResource {
                     .entity("roomId is required")
                     .build();
         }
+        if (sensor.getRoomId() == null || sensor.getRoomId().isBlank()) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity(Map.of(
+                            "status", 400,
+                            "error", "Bad Request",
+                            "message", "roomId is required"
+                    ))
+                    .build();
+
+        }
+        if (sensor.getType() == null || sensor.getType().isBlank()) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity(Map.of(
+                            "status", 400,
+                            "error", "Bad Request",
+                            "message", "Sensor type is required"
+                    ))
+                    .build();
+        }
+
+        if (sensor.getStatus() == null || sensor.getStatus().isBlank()) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity(Map.of(
+                            "status", 400,
+                            "error", "Bad Request",
+                            "message", "Sensor status is required"
+                    ))
+                    .build();
+        }
 
         Room room = DataStore.rooms.get(sensor.getRoomId());
         if (room == null) {
-    throw new LinkedResourceNotFoundException("Referenced room does not exist");
-}
+            throw new LinkedResourceNotFoundException("Referenced room does not exist");
+        }
 
         DataStore.sensors.put(sensor.getId(), sensor);
         room.getSensorIds().add(sensor.getId());
 
         return Response.created(URI.create("/api/v1/sensors/" + sensor.getId()))
-                .entity(sensor)
+                .entity(Map.of(
+                        "status", 201,
+                        "message", "Sensor created successfully",
+                        "data", sensor
+                ))
                 .build();
     }
 

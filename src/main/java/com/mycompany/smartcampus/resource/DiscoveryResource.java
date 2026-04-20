@@ -13,6 +13,9 @@ public class DiscoveryResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
+    public String crash() {
+    throw new NullPointerException("Test crash");
+}
     public Map<String, Object> getDiscovery() {
         Map<String, Object> response = new LinkedHashMap<>();
 

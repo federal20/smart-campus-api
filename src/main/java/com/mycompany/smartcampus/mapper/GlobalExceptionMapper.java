@@ -7,7 +7,7 @@ import jakarta.ws.rs.ext.Provider;
 
 import java.util.Map;
 
-
+@Provider
 public class GlobalExceptionMapper implements ExceptionMapper<Throwable> {
     @Override
     public Response toResponse(Throwable ex) {

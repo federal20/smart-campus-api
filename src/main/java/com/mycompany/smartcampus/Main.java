@@ -19,7 +19,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         HttpServer server = startServer();
-        System.out.println("Smart Campus API running at: " + BASE_URI );
+        System.out.println("Smart Campus API running at: " + BASE_URI + "api/v1");
         System.out.println("Press Enter to stop the server...");
         System.in.read();
         server.shutdownNow();
