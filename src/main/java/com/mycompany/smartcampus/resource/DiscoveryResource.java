@@ -4,8 +4,7 @@ import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
-
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.Map;
 
 @Path("/")
@@ -13,21 +12,18 @@ public class DiscoveryResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public String crash() {
-    throw new NullPointerException("Test crash");
-}
-    public Map<String, Object> getDiscovery() {
-        Map<String, Object> response = new LinkedHashMap<>();
+    public Map<String, Object> getApiInfo() {
+        Map<String, Object> response = new HashMap<>();
 
-        response.put("name", "Smart Campus Sensor & Room Management API");
-        response.put("version", "v1");
-        response.put("contact", "student@westminster.ac.uk");
+        response.put("version", "1.0");
+        response.put("name", "Smart Campus API");
+        response.put("adminContact", "admin@smartcampus.com");
 
-        Map<String, String> resources = new LinkedHashMap<>();
-        resources.put("rooms", "/api/v1/rooms");
-        resources.put("sensors", "/api/v1/sensors");
+        Map<String, String> links = new HashMap<>();
+        links.put("rooms", "/api/v1/rooms");
+        links.put("sensors", "/api/v1/sensors");
 
-        response.put("resources", resources);
+        response.put("links", links);
 
         return response;
     }
