@@ -196,11 +196,11 @@ This keeps the code cleaner and easier to manage.
 
 Video
 Part 1:
-[https://loom.com/xxxx](https://www.loom.com/share/312daa0b8b554fe680251ad56f7c194f)
+(https://www.loom.com/share/312daa0b8b554fe680251ad56f7c194f)
 
 Part 2:
-[https://loom.com/xxxx](https://www.loom.com/share/b55525cdeb4548f4889be39daa975fe2)
+(https://www.loom.com/share/b55525cdeb4548f4889be39daa975fe2)
 
 Part 3:
-[https://loom.com/xxxx](https://www.loom.com/share/e1b0dcee36794424a94082daa1b152b7)
+(https://www.loom.com/share/e1b0dcee36794424a94082daa1b152b7)
 In loom record video, I demonstrated all endpoints using Postman, including success and error cases.
